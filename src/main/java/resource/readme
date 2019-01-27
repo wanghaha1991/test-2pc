@@ -1,0 +1,27 @@
+Stage:
+ 1   pre-commit
+ 2   do-commit
+ -1  rollback
+
+Specification:
+1. start ServerA ServerB ServerC
+2. start Coordinator
+3. Use the embedded jetty, url: http://localhost:8888/transfer
+4. table info:
+   CREATE TABLE `account` (
+     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+     `name` varchar(128) NOT NULL DEFAULT '',
+     `money` int(11) NOT NULL,
+     `identity` int(18) NOT NULL,
+     PRIMARY KEY (`id`)
+   ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+   CREATE TABLE `doneLog` (
+     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+     `_from` varchar(128) DEFAULT NULL,
+     `_to` varchar(128) DEFAULT NULL,
+     `trans_time` bigint(32) DEFAULT NULL,
+     `deal_id` bigint(32) DEFAULT NULL,
+     `stage` int(11) DEFAULT NULL,
+     PRIMARY KEY (`id`)
+   ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
